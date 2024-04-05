@@ -36,11 +36,56 @@
             body{
                 background-color:#000;
                 color: #fff;
+                overflow: hidden;
             }
+            iframe{
+                overflow: hidden;
+                opacity: 0;
+                transition: all 1s;
+            }
+
+            .land-view{
+                position: fixed;
+                z-index: 10000;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background-color: rgba(0, 0, 0, 0.8);
+                color: #fff;
+                transition: all 1s;
+                pointer-events: none;
+            }
+            .land-view-content{
+                position: absolute;
+                top: 10vh;
+                left: 10vw;
+                width: 80vw;
+                height: 80vh;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .land-view-logo{
+                text-align: center;
+            }
+
         </style>
     </head>
     <body>
-        <iframe id="content" src="https://larrainprieto.cl/" frameborder="no">Cargando</iframe>
+        <div class="land-view">
+            <div class="land-view-content">
+                <div class="land-view-logo">
+                    CARGANDO . . .
+                </div>
+
+            </div>
+        </div>
+        <iframe id="content" src="https://xgl.brainxcode.cl/" frameborder="no">Cargando . . .</iframe>
         <script type="text/javascript">
 
             window.onresize = reportWindowSize;
@@ -53,7 +98,10 @@
                 document.getElementById("content").height=wy+"px";
             }
             reportWindowSize();
-
+            setTimeout(function(){
+                document.querySelector('.land-view').style.opacity="0";
+                document.querySelector('iframe').style.opacity="1";
+            },3000);
         </script>
     </body>
 </html>
